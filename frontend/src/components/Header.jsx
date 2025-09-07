@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
+import mattressLogo from '../images/mattress.png';
 import { Menu, X, Phone } from "lucide-react";
 
 const Header = () => {
@@ -23,9 +24,10 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-emerald-600 text-white rounded-lg p-2">
-              <span className="font-bold text-xl">W</span>
-            </div>
+            {/*<div className="bg-emerald-600 text-white rounded-lg p-2">
+            <img src={mattressLogo} alt="Woody Logo" className="h-8 w-auto" />
+            </div>*/}
+            <img src={mattressLogo} alt="Woody Logo" className="h-6 w-auto" />
             <div>
               <span className="text-2xl font-bold text-gray-900">Woody's</span>
               <br />

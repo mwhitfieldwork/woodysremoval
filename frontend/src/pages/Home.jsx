@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
+import mattressLogo from '../images/mattress.png';
+import junktruck from '../images/junkremovaltruck.jpg';
 import { Link } from "react-router-dom";
 import { 
   Truck, 
@@ -28,7 +30,7 @@ const Home = () => {
       title: "Furniture Removal",
       description: "Complete furniture haul away from any room in your home or office.",
       icon: <Building className="h-8 w-8" />,
-      image: "https://images.unsplash.com/photo-1729628371767-7a833756b8b5"
+      image: junktruck
     },
     {
       title: "Junk Removal",
@@ -136,11 +138,12 @@ const Home = () => {
 
             <div className="relative">
               <div className="relative z-10">
-                <img
+                {/*<img
                   src="https://images.unsplash.com/photo-1729628371767-7a833756b8b5"
                   alt="Professional removal truck"
                   className="rounded-lg shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-300"
-                />
+                />*/}
+                <img src={mattressLogo} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="absolute -top-4 -right-4 w-full h-full bg-emerald-100 rounded-lg -z-10"></div>
             </div>
