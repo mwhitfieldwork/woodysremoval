@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./frontend/React/junkremoval/woodysremoval/frontend
+        working-directory: ./frontend
 
     steps:
       - name: Checkout repo
