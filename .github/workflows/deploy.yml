@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./frontend/React/junkremoval/woodysremoval/frontend
 
     steps:
       - name: Checkout repo
@@ -27,10 +27,12 @@ jobs:
       - name: Build app
         run: npm run build
 
+      - name: Add .nojekyll
+        run: echo > build/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-
 
