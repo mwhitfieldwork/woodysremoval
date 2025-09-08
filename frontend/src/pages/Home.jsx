@@ -87,10 +87,6 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-<section>
-<h1 style={{ background: 'yellow', padding: '2rem' }}>Main content test</h1>
-</section>
-
       <section className="relative bg-gradient-to-br from-emerald-50 to-blue-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
