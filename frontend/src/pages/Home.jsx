@@ -87,8 +87,72 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section>
-      <h1 style={{ background: 'yellow', padding: '2rem' }}>Main content test</h1>
+<section>
+<h1 style={{ background: 'yellow', padding: '2rem' }}>Main content test</h1>
+</section>
+
+      <section className="relative bg-gradient-to-br from-emerald-50 to-blue-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 px-4 py-2">
+                  Professional Removal Service
+                </Badge>
+                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                  Fast & Reliable
+                  <span className="text-emerald-600 block">Junk Removal</span>
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  From mattresses to furniture, we handle all your removal needs. 
+                  Professional, insured, and eco-friendly service you can trust.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/order">
+                  <Button 
+                    size="lg" 
+                    className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+                  >
+                    Get Free Quote
+                  </Button>
+                </Link>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full sm:w-auto border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  (555) 123-JUNK
+                </Button>
+              </div>
+
+              <div className="flex items-center space-x-6 pt-4">
+                <div className="flex items-center space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <span className="text-sm text-gray-600">
+                  <strong>4.9/5</strong> from 500+ happy customers
+                </span>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="relative z-10">
+                {/*<img
+                  src="https://images.unsplash.com/photo-1729628371767-7a833756b8b5"
+                  alt="Professional removal truck"
+                  className="rounded-lg shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-300"
+                />*/}
+                <img src={mattressImg} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div className="absolute -top-4 -right-4 w-full h-full bg-emerald-100 rounded-lg -z-10"></div>
+            </div>
+          </div>
+        </div>
       </section>
 
 
