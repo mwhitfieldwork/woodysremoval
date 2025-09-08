@@ -54,7 +54,7 @@ const Contact = () => {
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Phone",
-      details: "(555) 123-JUNK",
+      details: "(844)239-7711",
       subtitle: "Call for immediate assistance"
     },
     {
@@ -153,7 +153,7 @@ const Contact = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full"
-                        placeholder="(555) 123-4567"
+                        placeholder=") 123-4567"
                       />
                     </div>
                     <div className="space-y-2">
