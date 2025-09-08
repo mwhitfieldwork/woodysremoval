@@ -124,7 +124,7 @@ const Home = () => {
                   className="w-full sm:w-auto border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
                 >
                   <Phone className="h-5 w-5 mr-2" />
-                  (555) 123-JUNK
+                  (844)239-7711
                 </Button>
               </div>
 
@@ -291,7 +291,7 @@ const Home = () => {
                 className="border-white text-white hover:bg-white hover:text-emerald-600 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Call (555) 123-JUNK
+                Call (844)239-7711
               </Button>
             </div>
           </div>
