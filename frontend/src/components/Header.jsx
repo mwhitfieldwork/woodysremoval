@@ -24,12 +24,12 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-emerald-600 text-white rounded-lg p-2">
-              <span className="font-bold text-xl">K</span>
+              <span className="font-bold text-xl">W</span>
             </div>
             <div>
-            <span className="text-2xl font-bold text-gray-900">Kendall County</span>
+            <span className="text-2xl font-bold text-gray-900">Woody's</span>
               <br />
-              <span className="text-sm text-emerald-600 font-medium">Removal Service</span>
+              <span className="text-sm text-emerald-600 font-medium">Junk Removal Service</span>
             </div>
           </Link>
 
