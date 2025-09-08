@@ -187,10 +187,10 @@ export const mockCompanyStats = {
 };
 
 export const mockContactInfo = {
-  phone: "(844)239-7711",
+  phone: "(844) 239-7711",
   email: "info@woodysremoval.com",
   hours: "8 AM - 8 PM, 7 days a week",
-  emergencyPhone: "(844)239-7711",
+  emergencyPhone: "(844) 239-7711",
   businessAddress: "1234 Removal Ave, Service City, ST 12345",
   mailingAddress: "PO Box 5678, Service City, ST 12345"
 };

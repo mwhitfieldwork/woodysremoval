@@ -54,7 +54,7 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-emerald-600">
               <Phone className="h-5 w-5" />
-              <span className="font-semibold">(844)239-7711</span>
+              <span className="font-semibold">(844) 239-7711</span>
             </div>
             <Button 
               className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105"
@@ -92,7 +92,7 @@ const Header = () => {
               ))}
               <div className="flex items-center space-x-2 text-emerald-600 py-2 px-4">
                 <Phone className="h-5 w-5" />
-                <span className="font-semibold">(844)239-7711</span>
+                <span className="font-semibold">(844) 239-7711</span>
               </div>
               <Button 
                 className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 mx-4 rounded-lg transition-all duration-200"
