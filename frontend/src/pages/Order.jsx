@@ -181,7 +181,7 @@ const Order = () => {
                 </p>
                 <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
                   <Phone className="h-4 w-4 mr-2" />
-                  Call (844)239-7711
+                  Call (844) 239-7711
                 </Button>
                 <p className="text-sm text-gray-500 text-center">
                   Available 7 days a week

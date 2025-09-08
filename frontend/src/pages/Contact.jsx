@@ -54,7 +54,7 @@ const Contact = () => {
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Phone",
-      details: "(844)239-7711",
+      details: "(844) 239-7711",
       subtitle: "Call for immediate assistance"
     },
     {
