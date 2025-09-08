@@ -24,7 +24,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-emerald-600 text-white rounded-lg p-2">
-              <span className="font-bold text-xl">K</span>
+              <span className="font-bold text-xl">W</span>
             </div>
             <div>
             <span className="text-2xl font-bold text-gray-900">Kendall County</span>
