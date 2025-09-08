@@ -22,14 +22,22 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install 
 
       - name: Build app
         run: npm run build
 
       - name: Add .nojekyll
-        run: echo > ./frontend/build/.nojekyll
+        run: echo > build/.nojekyll
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: List build contents
+        run: ls -la ./frontend/build               
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
