@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/woodysremoval/static/css/main.1e4b30e6.css",
+    "main.js": "/woodysremoval/static/js/main.fccb4776.js",
+    "static/media/junkremovaltruck.jpg": "/woodysremoval/static/media/junkremovaltruck.511151ee4531e440aea8.jpg",
+    "static/media/mattress.png": "/woodysremoval/static/media/mattress.7bac97870b2fd4bed89b.png",
+    "index.html": "/woodysremoval/index.html",
+    "main.1e4b30e6.css.map": "/woodysremoval/static/css/main.1e4b30e6.css.map",
+    "main.fccb4776.js.map": "/woodysremoval/static/js/main.fccb4776.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e4b30e6.css",
+    "static/js/main.fccb4776.js"
+  ]
+}
