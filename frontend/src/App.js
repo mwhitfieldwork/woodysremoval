@@ -11,7 +11,7 @@ import { Toaster } from "./components/ui/sonner";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      {/*<BrowserRouter>*/}
         <Header />
         <main>
           <Routes>
@@ -22,7 +22,7 @@ function App() {
         </main>
         <Footer />
         <Toaster />
-      </BrowserRouter>
+       {/*</BrowserRouter>*/}
     </div>
   );
 }

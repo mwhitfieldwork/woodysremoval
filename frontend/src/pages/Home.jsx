@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import mattressLogo from '../images/mattress.png';
+import mattressImg from '../images/mattress.png';
 import junktruck from '../images/junkremovaltruck.jpg';
 import { Link } from "react-router-dom";
 import { 
@@ -143,7 +143,7 @@ const Home = () => {
                   alt="Professional removal truck"
                   className="rounded-lg shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-300"
                 />*/}
-                <img src={mattressLogo} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300" />
+                <img src={mattressImg} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="absolute -top-4 -right-4 w-full h-full bg-emerald-100 rounded-lg -z-10"></div>
             </div>
