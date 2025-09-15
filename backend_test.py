@@ -194,6 +194,76 @@ def test_mongodb_connection():
         print(f"❌ MongoDB test failed: {e}")
         return False
 
+def test_email_functionality_detailed():
+    """Test email functionality with detailed error checking"""
+    print("\n🔍 Testing Email Functionality - Detailed...")
+    
+    test_data = {
+        "name": "Email Test User",
+        "email": "emailtest@example.com",
+        "phone": "+1-555-999-8888",
+        "service": "Email Test Service",
+        "message": "This is a test message to verify email functionality is working correctly."
+    }
+    
+    try:
+        # Submit the form
+        response = requests.post(f"{API_URL}/contact", json=test_data, timeout=30)
+        print(f"Response Status: {response.status_code}")
+        print(f"Response Body: {response.text}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("success"):
+                # Check the message to see if email was actually sent
+                message = data.get("message", "")
+                if "Thank you for your message!" in message:
+                    print("✅ Email functionality appears to be working (success message indicates email sent)")
+                    return True
+                elif "Your message has been received" in message:
+                    print("⚠️  Form saved but email sending may have failed (fallback message)")
+                    return False
+                else:
+                    print(f"❌ Unexpected success message: {message}")
+                    return False
+            else:
+                print(f"❌ Form submission failed: {data}")
+                return False
+        else:
+            print(f"❌ HTTP error: {response.status_code}")
+            return False
+            
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Request failed: {e}")
+        return False
+
+def test_mongodb_contact_submissions():
+    """Test if contact submissions are being saved to MongoDB"""
+    print("\n🔍 Testing MongoDB Contact Submissions Storage...")
+    
+    # Submit a test contact form
+    test_data = {
+        "name": "MongoDB Test User",
+        "email": "mongotest@example.com",
+        "message": "Testing MongoDB storage for contact submissions."
+    }
+    
+    try:
+        response = requests.post(f"{API_URL}/contact", json=test_data, timeout=10)
+        
+        if response.status_code == 200:
+            print("✅ Contact form submitted successfully")
+            print("⚠️  Note: Cannot directly verify MongoDB contact_submissions collection via API")
+            print("   (No GET endpoint available for contact submissions)")
+            return True
+        else:
+            print(f"❌ Contact form submission failed: {response.status_code}")
+            return False
+            
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Request failed: {e}")
+        return False
+
 def run_all_tests():
     """Run all backend tests"""
     print("=" * 60)
