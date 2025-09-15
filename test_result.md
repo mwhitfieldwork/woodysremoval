@@ -137,11 +137,11 @@ backend:
 
   - task: "Email Sending Function"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: "NA"
         agent: "main"
@@ -149,6 +149,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ Email sending function working correctly. Fixed critical logger initialization bug. SMTP connection successful, test emails sent successfully to info@ridofjunk.org. Contact form submissions trigger proper email notifications."
+      - working: false
+        agent: "user"
+        comment: "User tested the contact form but did not receive emails at info@ridofjunk.org. Backend testing showed success but real email delivery is failing."
 
 frontend:
   - task: "Frontend Environment Configuration"
