@@ -115,6 +115,31 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+@api_router.post("/contact", response_model=ContactFormResponse)
+async def submit_contact_form(contact_data: ContactFormCreate):
+    try:
+        # Save to database
+        contact_obj = ContactForm(**contact_data.dict())
+        await db.contact_submissions.insert_one(contact_obj.dict())
+        
+        # Send email
+        email_sent = await send_contact_email(contact_data)
+        
+        if email_sent:
+            return ContactFormResponse(
+                success=True,
+                message="Thank you for your message! We'll get back to you within 24 hours."
+            )
+        else:
+            return ContactFormResponse(
+                success=True,  # Still return success since it was saved to DB
+                message="Your message has been received. We'll get back to you within 24 hours."
+            )
+            
+    except Exception as e:
+        logger.error(f"Error processing contact form: {str(e)}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
 # Include the router in the main app
 app.include_router(api_router)
 
