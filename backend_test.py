@@ -273,10 +273,12 @@ def run_all_tests():
     tests = [
         ("API Health Check", test_api_health),
         ("MongoDB Connection", test_mongodb_connection),
+        ("MongoDB Contact Storage", test_mongodb_contact_submissions),
         ("Contact Form - All Fields", test_contact_form_valid_all_fields),
         ("Contact Form - Required Only", test_contact_form_required_fields_only),
         ("Contact Form - Invalid Email", test_contact_form_invalid_email),
         ("Contact Form - Missing Fields", test_contact_form_missing_required_fields),
+        ("Email Functionality - Detailed", test_email_functionality_detailed),
     ]
     
     results = []
