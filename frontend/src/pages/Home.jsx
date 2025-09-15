@@ -137,7 +137,7 @@ const Home = () => {
             </div>
 
             <div className="relative">
-              <div className="relative z-10">
+              <div className="relative z-10  hidden lg:block">
                 {/*<img
                   src="https://images.unsplash.com/photo-1729628371767-7a833756b8b5"
                   alt="Professional removal truck"
