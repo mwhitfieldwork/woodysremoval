@@ -101,3 +101,86 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "adjust the form on the contact page to send emails to info@ridofjunk.org when they submit"
+
+backend:
+  - task: "Email Configuration Setup"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/.env"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added SMTP configuration for Ionos email server (smtp.ionos.com) with TLS on port 587"
+
+  - task: "Contact Form API Endpoint"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added /api/contact POST endpoint with email sending functionality using smtplib and MongoDB storage"
+
+  - task: "Email Sending Function"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented send_contact_email function using SMTP with TLS encryption, sends FROM and TO info@ridofjunk.org"
+
+frontend:
+  - task: "Frontend Environment Configuration"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/.env"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created .env file with REACT_APP_BACKEND_URL=http://localhost:8001"
+
+  - task: "Contact Form API Integration"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Contact.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Updated handleSubmit function to call real /api/contact endpoint instead of setTimeout simulation"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Contact Form API Endpoint"
+    - "Email Sending Function"
+    - "Contact Form API Integration"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Implemented complete email functionality for contact form. Backend now has /api/contact endpoint that saves submissions to MongoDB and sends emails via SMTP to info@ridofjunk.org. Frontend updated to call real API. Ready for testing."
