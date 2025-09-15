@@ -57,12 +57,12 @@ const Contact = () => {
       details: "(844) 239-7711",
       subtitle: "Call for immediate assistance"
     },
-    {
+   /*} {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      details: "info@woodysremoval.com",
+      details: "info@ridofJunk.org",
       subtitle: "We respond within 24 hours"
-    },
+    },*/
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Service Area",
