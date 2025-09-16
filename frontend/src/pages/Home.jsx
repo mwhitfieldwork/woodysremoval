@@ -138,11 +138,6 @@ const Home = () => {
 
             <div className="relative">
               <div className="relative z-10  hidden lg:block">
-                {/*<img
-                  src="https://images.unsplash.com/photo-1729628371767-7a833756b8b5"
-                  alt="Professional removal truck"
-                  className="rounded-lg shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-300"
-                />*/}
                 <img src={mattressImg} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="absolute -top-4 -right-4 w-full h-full bg-emerald-100 rounded-lg -z-10"></div>
