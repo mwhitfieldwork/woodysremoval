@@ -27,7 +27,7 @@ const Header = () => {
               <span className="font-bold text-xl">W</span>
             </div>
             <div>
-            <span className="text-2xl font-bold text-gray-900">Kendall County</span>
+            <span className="text-2xl font-bold text-gray-900">Woody's</span>
               <br />
               <span className="text-sm text-emerald-600 font-medium">Removal Service</span>
             </div>
