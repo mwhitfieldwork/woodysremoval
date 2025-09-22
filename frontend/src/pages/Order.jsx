@@ -143,21 +143,10 @@ const Order = () => {
                 {/* IFRAME PLACEHOLDER - This is where you'll add the LoadUp iframe */}
                 <div className="iframe-placeholder bg-white border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
                   <div className="space-y-4">
-                    <ExternalLink className="h-16 w-16 text-gray-400 mx-auto" />
-                    <h3 className="text-xl font-semibold text-gray-700">
-                      LoadUp Order System
-                    </h3>
-                    <p className="text-gray-600 max-w-md mx-auto">
-                      This section will contain the LoadUp iframe for order processing. 
-                      The iframe will provide instant pricing, scheduling, and booking functionality.
-                    </p>
-                    <div className="bg-gray-100 rounded-lg p-4 text-sm text-gray-600">
-                      <strong>Developer Note:</strong> Replace this placeholder with:
-                      <br />
-                      <code className="text-xs bg-white px-2 py-1 rounded mt-2 inline-block">
-                        &lt;iframe src="YOUR_LOADUP_URL" width="100%" height="800px" frameBorder="0"&gt;&lt;/iframe&gt;
-                      </code>
-                    </div>
+                  <div id="quote-form" data-attribution-source="ridofjunk" style={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}></div> 
+                      <script type="text/javascript" 
+                      src="https://goloadup.com/wp-content/themes/goloadup/js/retail_brand_builde
+                      r_setup.min.js"></script>
                   </div>
                 </div>
                 {/* END IFRAME PLACEHOLDER */}
