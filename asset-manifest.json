@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.4bd17af0.css",
-    "main.js": "/static/js/main.3dd39ff9.js",
+    "main.css": "/static/css/main.d90a279b.css",
+    "main.js": "/static/js/main.8709cb81.js",
     "static/media/junkremovaltruck.jpg": "/static/media/junkremovaltruck.511151ee4531e440aea8.jpg",
     "static/media/mattress.png": "/static/media/mattress.7bac97870b2fd4bed89b.png",
     "index.html": "/index.html",
-    "main.4bd17af0.css.map": "/static/css/main.4bd17af0.css.map",
-    "main.3dd39ff9.js.map": "/static/js/main.3dd39ff9.js.map"
+    "main.d90a279b.css.map": "/static/css/main.d90a279b.css.map",
+    "main.8709cb81.js.map": "/static/js/main.8709cb81.js.map"
   },
   "entrypoints": [
-    "static/css/main.4bd17af0.css",
-    "static/js/main.3dd39ff9.js"
+    "static/css/main.d90a279b.css",
+    "static/js/main.8709cb81.js"
   ]
 }
