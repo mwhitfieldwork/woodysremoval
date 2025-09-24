@@ -3,7 +3,6 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import mattressImg from '../images/mattress.png';
-import junktruck from '../images/junkremovaltruck.jpg';
 import { Link } from "react-router-dom";
 import { 
   Truck, 
@@ -13,13 +12,14 @@ import {
   Star, 
   Phone, 
   CheckCircle,
+  CheckSquare,
   Recycle,
   Home as HomeIcon,
   Building
 } from "lucide-react";
 
 const Home = () => {
-  const services = [
+  /*const services = [
     {
       title: "Mattress Removal",
       description: "Professional mattress and box spring removal with eco-friendly disposal.",
@@ -38,8 +38,24 @@ const Home = () => {
       icon: <Truck className="h-8 w-8" />,
       image: "https://images.unsplash.com/photo-1602867693052-7ebe29e43353"
     }
-  ];
+  ];*/
 
+  const services = [
+    { category: 'Mattress & Bed', items: ['Mattress Removal', 'Box Spring Removal'] },
+    { category: 'Trash & Debris', items: ['Cardboard Hauling', 'Old Pallet Removal'] },
+    { category: 'Electronics', items: ['Television Disposal', 'Stereo System Removal'] },
+    { category: 'Patio & Outdoor', items: ['Old Grill Removal', 'Wood Stove Hauling'] },
+    { category: 'Office & Business', items: ['Office Desk Removal', 'Cubicle Breakdown'] },
+    { category: 'Heavy & Bulky', items: ['Piano Removal', 'Pool Table Hauling'] },
+    { category: 'Tools & Equipment', items: ['Toolbox Disposal', 'Ladder Removal'] },
+    { category: 'Large Furniture', items: ['Couch Removal', 'Recliner Hauling'] },
+    { category: 'Exercise Equipment', items: ['Treadmill Disposal', 'Elliptical Removal'] },
+    { category: 'Appliances', items: ['Refrigerator Removal', 'Washer/Dryer Hauling'] },
+    { category: 'Household Junk', items: ['Baby Gear Disposal', 'Wall Decor Removal'] },
+    { category: 'Sporting Goods', items: ['Basketball Goal Removal', 'Golf Club Hauling'] },
+    { category: 'Bagged & Boxed', items: ['Linen Disposal', 'Book Hauling'] },
+  ];
+  
   const features = [
     {
       icon: <Clock className="h-6 w-6" />,
@@ -114,14 +130,14 @@ const Home = () => {
                     Get Free Quote
                   </Button>
                 </Link>
-                <Button 
+                {/*<Button 
                   variant="outline" 
                   size="lg" 
                   className="w-full sm:w-auto border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   (844) 239-7711
-                </Button>
+                </Button>*/}
               </div>
 
               <div className="flex items-center space-x-6 pt-4">
@@ -190,36 +206,93 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card 
-                key={index} 
-                className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+            <section
+              style={{
+                padding: '2rem',
+                backgroundColor: '#f0f0f0',
+                fontFamily: 'Arial, sans-serif',
+                color: '#333',
+                maxWidth: '1200px',
+                margin: '0 auto',
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: '2rem',
+                  marginBottom: '2rem',
+                  fontWeight: 'bold',
+                  color: '#222',
+                  borderBottom: '2px solid #4CAF50',
+                  paddingBottom: '0.5rem',
+                  textAlign: 'center',
+                }}
               >
-                <div className="relative h-48">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                    <div className="bg-white text-emerald-600 rounded-full p-3">
-                      {service.icon}
-                    </div>
+                Full List of Services
+              </h2>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                  gap: '1.5rem',
+                }}
+              >
+                {services.map(({ category, items }) => (
+                  <div
+                    key={category}
+                    style={{
+                      backgroundColor: '#fff',
+                      padding: '1rem',
+                      borderRadius: '8px',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+                    }}
+                  >
+                    <h3
+                      style={{
+                        fontSize: '1.25rem',
+                        fontWeight: 'bold',
+                        marginBottom: '0.75rem',
+                        color: '#4CAF50',
+                      }}
+                    >
+                      {category}
+                    </h3>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                      {items.map((item, index) => (
+                        <li
+                          key={index}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            marginBottom: '0.5rem',
+                          }}
+                        >
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              width: '1.75rem',
+                              height: '1.75rem',
+                              borderRadius: '0.5rem',
+                              backgroundColor: 'rgb(209 250 229)',
+                              color: 'rgb(5 150 105)',
+                              marginRight: '0.5rem',
+                              flexShrink: 0,
+                            }}
+                          >
+                            <CheckSquare size={16} strokeWidth={2} />
+                          </span>
+                          <span style={{ lineHeight: '1.5' }}>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <Link to="/order">
-                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                      Book Now
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                ))}
+              </div>
+            </section>
+
+
         </div>
       </section>
 
@@ -276,14 +349,14 @@ const Home = () => {
                   Get Free Quote
                 </Button>
               </Link>
-              <Button 
+              {/*<Button 
                 variant="outline" 
                 size="lg" 
                 className="border-white text-white hover:bg-white hover:text-emerald-600 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
               >
                 <Phone className="h-5 w-5 mr-2" />
                 Call (844) 239-7711
-              </Button>
+              </Button>*/}
             </div>
           </div>
         </div>

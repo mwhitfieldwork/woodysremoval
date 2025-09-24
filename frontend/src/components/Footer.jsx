@@ -38,9 +38,9 @@ const Footer = () => {
               <Link to="/contact" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200">
                 Contact Us
               </Link>
-              <a href="#services" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200">
+              {/*<a href="#services" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200">
                 Our Services
-              </a>
+              </a>*/}
             </div>
           </div>
 
