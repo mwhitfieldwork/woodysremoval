@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
@@ -21,21 +22,21 @@ const Order = () => {
       id: 1,
       title: "Mattress Removal",
       description: "Single mattress and box spring removal",
-      price: "Starting at $89",
+      price: "Get Online Pricing",
       popular: true
     },
     {
       id: 2,
       title: "Furniture Set",
       description: "Multiple furniture items from one room",
-      price: "Starting at $149",
+      price: "Get Online Pricing",
       popular: false
     },
     {
       id: 3,
       title: "Full Property Cleanout",
       description: "Complete home or business cleanout service",
-      price: "Custom Quote",
+      price: "Get Online Pricing",
       popular: false
     }
   ];
@@ -141,7 +142,7 @@ const Order = () => {
                 </Alert>
 
                 {/* IFRAME PLACEHOLDER - This is where you'll add the LoadUp iframe */}
-                <div className="iframe-placeholder bg-white border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
+                <div className="iframe-placeholder bg-white border-2 border-dashed border-gray-300 rounded-lg p-1 text-center">
                   <div className="space-y-4">
                   <iframe
                       src={`${window.location.origin}/quote.html`}
@@ -170,8 +171,8 @@ const Order = () => {
                   Our friendly team is here to help with any questions about your removal service.
                 </p>
                 <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call (844) 239-7711
+                  {/*<Phone className="h-4 w-4 mr-2" />*/}
+                  <Link to="/contact">Contact Us</Link>
                 </Button>
                 <p className="text-sm text-gray-500 text-center">
                   Available 7 days a week
