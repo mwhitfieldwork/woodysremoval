@@ -143,10 +143,11 @@ const Order = () => {
                 {/* IFRAME PLACEHOLDER - This is where you'll add the LoadUp iframe */}
                 <div className="iframe-placeholder bg-white border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
                   <div className="space-y-4">
-                  <div id="quote-form" data-attribution-source="ridofjunk" style={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}></div> 
-                      <script type="text/javascript" 
-                      src="https://goloadup.com/wp-content/themes/goloadup/js/retail_brand_builde
-                      r_setup.min.js"></script>
+                  <iframe
+                      src={`${window.location.origin}/quote.html`}
+                      title="LoadUp Quote"
+                      style={{ width: "100%", minHeight: "700px", border: "none" }}
+                    />
                   </div>
                 </div>
                 {/* END IFRAME PLACEHOLDER */}
