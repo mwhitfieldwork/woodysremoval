@@ -270,3 +270,17 @@ select:focus {
 a#emergent-badge {
   display: none !important;
 }
+
+.logo {
+  width:75%;
+  height:auto;
+}
+
+.woody-thumbs{
+  width:50%;
+  height:auto;
+}
+
+.emrald-header {
+  overflow:hidden;
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Menu, X, Phone } from "lucide-react";
+import logoImg from '../images/woody-logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,11 +21,11 @@ const Header = () => {
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-0">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-emerald-600 text-white rounded-lg p-2">
-              <span className="font-bold text-xl">W</span>
+            <div className="text-white rounded-lg p-0">
+              <span className="font-bold text-xl"><img src={logoImg} alt="Woody Logo" className="logo"/></span>
             </div>
             <div>
             <span className="text-2xl font-bold text-gray-900">Woody's</span>
