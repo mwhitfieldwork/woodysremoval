@@ -180,9 +180,9 @@ frontend:
 
   - task: "Contact Form API Integration"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/pages/Contact.jsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -192,6 +192,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Verified contact form is configured to use production URL https://ridofjunk.org and sends emails to info@ridofjunk.org"
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL API ISSUE: Frontend contact form testing reveals that https://ridofjunk.org/api/contact endpoint returns 405 Method Not Allowed error for POST requests. Form validation, error handling, and UI/UX are working correctly, but the backend API is not accessible at the production URL. This indicates a deployment/configuration issue where the backend API is not properly deployed or configured at https://ridofjunk.org. All other frontend functionality tested successfully: required field validation ✅, email format validation ✅, error handling ✅, UI/UX ✅. The form correctly uses REACT_APP_BACKEND_URL=https://ridofjunk.org for API calls."
 
 metadata:
   created_by: "main_agent"
