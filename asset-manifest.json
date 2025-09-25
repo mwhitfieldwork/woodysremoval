@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.f1a38d8c.css",
-    "main.js": "/static/js/main.e3b38c29.js",
+    "main.css": "/static/css/main.b11b585f.css",
+    "main.js": "/static/js/main.92aae0e6.js",
+    "static/media/truckback.png": "/static/media/truckback.58aaac3b08408b518406.png",
     "static/media/junkremovaltruck.jpg": "/static/media/junkremovaltruck.511151ee4531e440aea8.jpg",
     "static/media/woodylarge_cropped.png": "/static/media/woodylarge_cropped.e445f8d6906683cb10ef.png",
     "static/media/woody-logo.png": "/static/media/woody-logo.b89a51154bbb1f483e74.png",
     "index.html": "/index.html",
-    "main.f1a38d8c.css.map": "/static/css/main.f1a38d8c.css.map",
-    "main.e3b38c29.js.map": "/static/js/main.e3b38c29.js.map"
+    "main.b11b585f.css.map": "/static/css/main.b11b585f.css.map",
+    "main.92aae0e6.js.map": "/static/js/main.92aae0e6.js.map"
   },
   "entrypoints": [
-    "static/css/main.f1a38d8c.css",
-    "static/js/main.e3b38c29.js"
+    "static/css/main.b11b585f.css",
+    "static/js/main.92aae0e6.js"
   ]
 }
