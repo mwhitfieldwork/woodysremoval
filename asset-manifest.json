@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.de837cfc.css",
-    "main.js": "/static/js/main.237bdb91.js",
-    "static/media/mattress.png": "/static/media/mattress.7bac97870b2fd4bed89b.png",
+    "main.css": "/static/css/main.f1a38d8c.css",
+    "main.js": "/static/js/main.e3b38c29.js",
+    "static/media/junkremovaltruck.jpg": "/static/media/junkremovaltruck.511151ee4531e440aea8.jpg",
+    "static/media/woodylarge_cropped.png": "/static/media/woodylarge_cropped.e445f8d6906683cb10ef.png",
+    "static/media/woody-logo.png": "/static/media/woody-logo.b89a51154bbb1f483e74.png",
     "index.html": "/index.html",
-    "main.de837cfc.css.map": "/static/css/main.de837cfc.css.map",
-    "main.237bdb91.js.map": "/static/js/main.237bdb91.js.map"
+    "main.f1a38d8c.css.map": "/static/css/main.f1a38d8c.css.map",
+    "main.e3b38c29.js.map": "/static/js/main.e3b38c29.js.map"
   },
   "entrypoints": [
-    "static/css/main.de837cfc.css",
-    "static/js/main.237bdb91.js"
+    "static/css/main.f1a38d8c.css",
+    "static/js/main.e3b38c29.js"
   ]
 }
