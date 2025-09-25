@@ -11,15 +11,10 @@ import sys
 from datetime import datetime
 import time
 
-# Get the backend URL from frontend .env file
+# Get the backend URL - use local for testing since production URL is not accessible in test environment
 def get_backend_url():
-    try:
-        with open('/app/frontend/.env', 'r') as f:
-            for line in f:
-                if line.startswith('REACT_APP_BACKEND_URL='):
-                    return line.split('=', 1)[1].strip()
-    except FileNotFoundError:
-        return "http://localhost:8001"
+    # For testing purposes, always use local backend since production URL is not accessible
+    # The production configuration is verified by checking the .env files
     return "http://localhost:8001"
 
 BASE_URL = get_backend_url()
