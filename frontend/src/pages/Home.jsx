@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import thumbsImg from '../images/woodylarge_cropped.png';
 import junktruck from '../images/junkremovaltruck.jpg';
+import truckback from '../images/truckback.png';
 import { Link } from "react-router-dom";
 import { 
   Truck, 
@@ -15,31 +16,48 @@ import {
   CheckCircle,
   CheckSquare,
   Recycle,
-  Home as HomeIcon,
-  Building
+  Home,
+  Building,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
-const Home = () => {
+const Home_slider = () => {
+  // Slider state
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerView = 3; // Show 3 items at once on desktop
+
   const services_scroll = [
     {
       title: "Mattress Removal",
       description: "Professional mattress and box spring removal with eco-friendly disposal.",
-      icon: <HomeIcon className="h-8 w-8" />,
+      /*icon: <HomeIcon className="h-8 w-8" />,*/
       image: "https://images.unsplash.com/photo-1647376036543-f9f543601a1d"
     },
     {
       title: "Furniture Removal",
       description: "Complete furniture haul away from any room in your home or office.",
-      icon: <Building className="h-8 w-8" />,
+      /*icon: <Building className="h-8 w-8" />,*/
       image: junktruck
     },
     {
       title: "Junk Removal",
       description: "Full-service junk removal for residential and commercial properties.",
-      icon: <Truck className="h-8 w-8" />,
-      image: "https://images.unsplash.com/photo-1602867693052-7ebe29e43353"
+      /*icon: <Truck className="h-8 w-8" />,*/
+      image: truckback
     }
   ];
+
+  // Slider functions
+  const maxIndex = Math.max(0, services_scroll.length - itemsPerView);
+
+  const nextSlide = () => {
+    setCurrentIndex(prev => prev >= maxIndex ? 0 : prev + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(prev => prev <= 0 ? maxIndex : prev - 1);
+  };
 
   const services = [
     { category: 'Mattress & Bed', items: ['Mattress Removal', 'Box Spring Removal'] },
@@ -131,14 +149,6 @@ const Home = () => {
                     Get Free Quote
                   </Button>
                 </Link>
-                {/*<Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full sm:w-auto border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
-                >
-                  <Phone className="h-5 w-5 mr-2" />
-                  (844) 239-7711
-                </Button>*/}
               </div>
 
               <div className="flex items-center space-x-6 pt-4">
@@ -154,15 +164,14 @@ const Home = () => {
             </div>
 
             <div className="relative">
-              <div className="relative z-10  hidden lg:block">
-                <img src={thumbsImg} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300 woody-thumbs"/>
+              <div className="relative z-10 hidden lg:block">
+                <img src={thumbsImg} alt="Woody Logo" className="w-full h-auto transform hover:scale-105 transition-transform duration-300 woody-thumbs"/>
               </div>
               <div className="absolute -top-4 -right-4 w-full h-full bg-emerald-100 rounded-lg -z-10"></div>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Features Section */}
       <section className="py-16 bg-white">
@@ -194,153 +203,176 @@ const Home = () => {
           </div>
         </div>
       </section>
-      { /* Servvice Scroll Section */}
+
+      {/* Service Scroll Section with Slider */}
       <section id="service-overview" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Our Services
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Professional removal services for homes and businesses across the nation.
-              </p>
-          </div> 
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {services_scroll.map((service, index) => (
-                <Card 
-                  key={index} 
-                  className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                >
-                  <div className="relative h-48">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                      <div className="bg-white text-emerald-600 rounded-full p-3">
-                        {service.icon}
-                      </div>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
-                    <Link to="/order">
-                      <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                        Book Now
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-          </section>
-        </div>
-      </section>
-      {/* Services Section */}
-      <section id="services" className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Our Services
+              Our Featured Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Professional removal services for homes and businesses across the nation.
             </p>
-          </div>
+          </div> 
 
-            <section
-              style={{
-                padding: '2rem',
-                backgroundColor: '#f0f0f0',
-                fontFamily: 'Arial, sans-serif',
-                color: '#333',
-                maxWidth: '1200px',
-                margin: '0 auto',
-              }}
+          {/* Slider Container */}
+          <div className="relative">
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              disabled={services_scroll.length <= itemsPerView}
             >
-              <h2
-                style={{
-                  fontSize: '2rem',
-                  marginBottom: '2rem',
-                  fontWeight: 'bold',
-                  color: '#222',
-                  borderBottom: '2px solid #4CAF50',
-                  paddingBottom: '0.5rem',
-                  textAlign: 'center',
-                }}
-              >
-                Full List of Services
-              </h2>
+              <ChevronLeft className="w-6 h-6 text-gray-600" />
+            </button>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                  gap: '1.5rem',
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              disabled={services_scroll.length <= itemsPerView}
+            >
+              <ChevronRight className="w-6 h-6 text-gray-600" />
+            </button>
+
+            {/* Slider Content */}
+            <div className="overflow-hidden mx-8"> {/* mx-8 to make room for arrows */}
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ 
+                  transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
+                  width: `${(services_scroll.length / itemsPerView) * 100}%`
                 }}
               >
-                {services.map(({ category, items }) => (
-                  <div
-                    key={category}
-                    style={{
-                      backgroundColor: '#fff',
-                      padding: '1rem',
-                      borderRadius: '8px',
-                      boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
-                    }}
+                {services_scroll.map((service, index) => (
+                  <div 
+                    key={index}
+                    className="w-full px-4" // px-4 for spacing between items
+                    style={{ flex: `0 0 ${100 / itemsPerView}%` }}
                   >
-                    <h3
-                      style={{
-                        fontSize: '1.25rem',
-                        fontWeight: 'bold',
-                        marginBottom: '0.75rem',
-                        color: '#4CAF50',
-                      }}
-                    >
-                      {category}
-                    </h3>
-                    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                      {items.map((item, index) => (
-                        <li
-                          key={index}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            marginBottom: '0.5rem',
-                          }}
-                        >
-                          <span
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              width: '1.75rem',
-                              height: '1.75rem',
-                              borderRadius: '0.5rem',
-                              backgroundColor: 'rgb(209 250 229)',
-                              color: 'rgb(5 150 105)',
-                              marginRight: '0.5rem',
-                              flexShrink: 0,
-                            }}
-                          >
-                            <CheckSquare size={16} strokeWidth={2} />
-                          </span>
-                          <span style={{ lineHeight: '1.5' }}>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                      <div className="relative h-48">
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                          {/*<div className="bg-white text-emerald-600 rounded-full p-3">
+                            {service.icon}
+                          </div>*/}
+                        </div>
+                      </div>
+                      <CardContent className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                        <p className="text-gray-600 mb-4">{service.description}</p>
+                        <Link to="/order">
+                          <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                            Book Now
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
                   </div>
                 ))}
               </div>
-            </section>
+            </div>
 
+            {/* Dots Indicator */}
+            {services_scroll.length > itemsPerView && (
+              <div className="flex justify-center mt-6 space-x-2">
+                {Array.from({ length: maxIndex + 1 }, (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      currentIndex === index ? 'bg-emerald-600' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
 
+      {/* Full Services Section */}
+      <section id="services" className="py-16 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-400 mb-4">
+              Complete Service List
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              We handle everything from small items to large furniture and appliances.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1.5rem',
+            }}
+          >
+            {services.map(({ category, items }) => (
+              <div
+                key={category}
+                style={{
+                  backgroundColor: '#fff',
+                  padding: '1rem',
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+                }}
+              >
+                <h3
+                  style={{
+                    fontSize: '1.25rem',
+                    fontWeight: 'bold',
+                    marginBottom: '0.75rem',
+                    color: '#4CAF50',
+                  }}
+                >
+                  {category}
+                </h3>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                  {items.map((item, index) => (
+                    <li
+                      key={index}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        marginBottom: '0.5rem',
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: '1.75rem',
+                          height: '1.75rem',
+                          borderRadius: '0.5rem',
+                          backgroundColor: 'rgb(209 250 229)',
+                          color: 'rgb(5 150 105)',
+                          marginRight: '0.5rem',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <CheckSquare size={16} strokeWidth={2} />
+                      </span>
+                      <span style={{ lineHeight: '1.5' }}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -392,14 +424,6 @@ const Home = () => {
                   Get Free Quote
                 </Button>
               </Link>
-              {/*<Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white text-white hover:bg-white hover:text-emerald-600 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200"
-              >
-                <Phone className="h-5 w-5 mr-2" />
-                Call (844) 239-7711
-              </Button>*/}
             </div>
           </div>
         </div>
@@ -408,4 +432,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home_slider;
