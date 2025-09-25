@@ -204,11 +204,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Contact Form API Endpoint"
-    - "Email Sending Function"
     - "Contact Form API Integration"
-  stuck_tasks: []
-  test_all: true
+  stuck_tasks:
+    - "Contact Form API Integration"
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
