@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import logoImg from '../images/mattress.png';
 import { Menu, X, Phone } from "lucide-react";
+import logoImg from '../images/woody-logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

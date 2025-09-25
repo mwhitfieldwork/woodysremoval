@@ -2,7 +2,8 @@ import React from "react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import mattressImg from '../images/mattress.png';
+import thumbsImg from '../images/woodylarge_cropped.png';
+import junktruck from '../images/junkremovaltruck.jpg';
 import { Link } from "react-router-dom";
 import { 
   Truck, 
@@ -19,7 +20,7 @@ import {
 } from "lucide-react";
 
 const Home = () => {
-  /*const services = [
+  const services_scroll = [
     {
       title: "Mattress Removal",
       description: "Professional mattress and box spring removal with eco-friendly disposal.",
@@ -38,7 +39,7 @@ const Home = () => {
       icon: <Truck className="h-8 w-8" />,
       image: "https://images.unsplash.com/photo-1602867693052-7ebe29e43353"
     }
-  ];*/
+  ];
 
   const services = [
     { category: 'Mattress & Bed', items: ['Mattress Removal', 'Box Spring Removal'] },
@@ -103,7 +104,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-emerald-50 to-blue-50 py-20">
+      <section className="relative bg-gradient-to-br from-emerald-50 to-blue-50 py-0 emrald-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -125,7 +126,7 @@ const Home = () => {
                 <Link to="/order">
                   <Button 
                     size="lg" 
-                    className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+                    className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-120 shadow-lg"
                   >
                     Get Free Quote
                   </Button>
@@ -154,7 +155,7 @@ const Home = () => {
 
             <div className="relative">
               <div className="relative z-10  hidden lg:block">
-                <img src={mattressImg} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300" />
+                <img src={thumbsImg} alt="Woody Logo" className=" w-full h-auto transform hover:scale-105 transition-transform duration-300 woody-thumbs"/>
               </div>
               <div className="absolute -top-4 -right-4 w-full h-full bg-emerald-100 rounded-lg -z-10"></div>
             </div>
@@ -193,7 +194,49 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      { /* Servvice Scroll Section */}
+      <section id="service-overview" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Our Services
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Professional removal services for homes and businesses across the nation.
+              </p>
+          </div> 
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {services_scroll.map((service, index) => (
+                <Card 
+                  key={index} 
+                  className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div className="relative h-48">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                      <div className="bg-white text-emerald-600 rounded-full p-3">
+                        {service.icon}
+                      </div>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <Link to="/order">
+                      <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                        Book Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+          </section>
+        </div>
+      </section>
       {/* Services Section */}
       <section id="services" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
