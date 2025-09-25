@@ -37,6 +37,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // Use environment variable for backend URL, with production fallback
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://ridofjunk.org';
       const response = await fetch(`${backendUrl}/api/contact`, {
         method: 'POST',
