@@ -159,15 +159,18 @@ backend:
 frontend:
   - task: "Frontend Environment Configuration"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/.env"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Created .env file with REACT_APP_BACKEND_URL=http://localhost:8001"
+      - working: true
+        agent: "main"
+        comment: "Updated .env file with production URL REACT_APP_BACKEND_URL=https://ridofjunk.org as requested by user"
 
   - task: "Contact Form API Integration"
     implemented: true
