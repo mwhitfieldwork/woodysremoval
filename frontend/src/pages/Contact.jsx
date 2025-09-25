@@ -37,7 +37,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://ridofjunk.org';
       const response = await fetch(`${backendUrl}/api/contact`, {
         method: 'POST',
         headers: {
@@ -84,7 +84,7 @@ const Contact = () => {
       icon: <MapPin className="h-6 w-6" />,
       title: "Service Area",
       details: "Local & Nationwide",
-      subtitle: "50+ metro areas covered"
+      subtitle: "50 plus metro areas covered"
     },
     {
       icon: <Clock className="h-6 w-6" />,
