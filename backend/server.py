@@ -25,6 +25,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+app = FastAPI()
+api_router = APIRouter()
+
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 logger.info(f"Mongo URL being used: {mongo_url}")
