@@ -2,51 +2,47 @@ from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
-import os
-import logging
-from pathlib import Path
 from pydantic import BaseModel, Field, EmailStr
 from typing import List, Optional
-import uuid
+from pathlib import Path
 from datetime import datetime
-import smtplib
-import ssl
+import smtplib, ssl, os, uuid, logging
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-
+# Load environment variables
 ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+load_dotenv(ROOT_DIR / ".env")
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
+# Initialize FastAPI
 app = FastAPI()
 api_router = APIRouter()
 
+# Load config safely
+MONGO_URL = os.environ.get("MONGO_URL")
+DB_NAME = os.environ.get("DB_NAME")
+SMTP_EMAIL = os.environ.get("SMTP_EMAIL")
+SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
+SMTP_SERVER = os.environ.get("SMTP_SERVER")
+SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
+CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "*").split(",")
+
 # MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-logger.info(f"Mongo URL being used: {mongo_url}")
-
 try:
-    client = AsyncIOMotorClient(
-        mongo_url,
-        tls=True,
-        tlsAllowInvalidCertificates=True
-    )
-    db = client[os.environ['DB_NAME']]
-    logger.info("MongoDB client initialized successfully")
+    if not MONGO_URL or not DB_NAME:
+        raise ValueError("Missing MongoDB config")
+    client = AsyncIOMotorClient(MONGO_URL, tls=True, tlsAllowInvalidCertificates=True)
+    db = client[DB_NAME]
+    logger.info("MongoDB client initialized")
 except Exception as e:
-    logger.error(f"MongoDB connection failed: {str(e)}")
-    db = None  # Prevent downstream crashes
+    logger.error(f"MongoDB connection failed: {e}")
+    db = None
 
-
-
-# Define Models
+# Models
 class StatusCheck(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
@@ -75,16 +71,17 @@ class ContactFormResponse(BaseModel):
     success: bool
     message: str
 
-# Email sending function
-async def send_contact_email(contact_data: ContactFormCreate):
+# Email sender
+async def send_contact_email(contact_data: ContactFormCreate) -> bool:
     try:
-        # Create message
+        if not all([SMTP_EMAIL, SMTP_PASSWORD, SMTP_SERVER]):
+            raise ValueError("Missing SMTP config")
+
         msg = MIMEMultipart()
-        msg['From'] = os.environ['SMTP_EMAIL']
-        msg['To'] = os.environ['SMTP_EMAIL']  # Sending to the same email
-        msg['Subject'] = f"New Contact Form Submission from {contact_data.name}"
-        
-        # Create email body
+        msg["From"] = SMTP_EMAIL
+        msg["To"] = SMTP_EMAIL
+        msg["Subject"] = f"New Contact Form Submission from {contact_data.name}"
+
         body = f"""
 New contact form submission received:
 
@@ -99,74 +96,77 @@ Message:
 ---
 This email was sent from the Woody's Removal Service website contact form.
         """.strip()
-        
-        msg.attach(MIMEText(body, 'plain'))
-        
-        # Connect to server and send email
+
+        msg.attach(MIMEText(body, "plain"))
+
         context = ssl.create_default_context()
-        with smtplib.SMTP(os.environ['SMTP_SERVER'], int(os.environ['SMTP_PORT'])) as server:
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls(context=context)
-            server.login(os.environ['SMTP_EMAIL'], os.environ['SMTP_PASSWORD'])
+            server.login(SMTP_EMAIL, SMTP_PASSWORD)
             server.send_message(msg)
-            
+
         return True
     except Exception as e:
-        logger.error(f"Failed to send email: {str(e)}")
+        logger.error(f"Email sending failed: {e}")
         return False
 
-# Add your routes to the router instead of directly to app
+# Routes
+@api_router.get("/ping")
+async def ping():
+    return {"status": "ok"}
+
 @api_router.get("/")
 async def root():
     return {"message": "Hello World"}
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.dict()
-    status_obj = StatusCheck(**status_dict)
-    _ = await db.status_checks.insert_one(status_obj.dict())
+    if not db:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    status_obj = StatusCheck(**input.dict())
+    await db.status_checks.insert_one(status_obj.dict())
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
+    if not db:
+        raise HTTPException(status_code=500, detail="Database not initialized")
     status_checks = await db.status_checks.find().to_list(1000)
-    return [StatusCheck(**status_check) for status_check in status_checks]
+    return [StatusCheck(**sc) for sc in status_checks]
 
 @api_router.post("/contact", response_model=ContactFormResponse)
 async def submit_contact_form(contact_data: ContactFormCreate):
+    if not db:
+        raise HTTPException(status_code=500, detail="Database not initialized")
     try:
-        # Save to database
         contact_obj = ContactForm(**contact_data.dict())
         await db.contact_submissions.insert_one(contact_obj.dict())
-        
-        # Send email
+
         email_sent = await send_contact_email(contact_data)
-        
-        if email_sent:
-            return ContactFormResponse(
-                success=True,
-                message="Thank you for your message! We'll get back to you within 24 hours."
-            )
-        else:
-            return ContactFormResponse(
-                success=True,  # Still return success since it was saved to DB
-                message="Your message has been received. We'll get back to you within 24 hours."
-            )
-            
+
+        return ContactFormResponse(
+            success=True,
+            message="Thanks for reaching out! We'll get back to you within 24 hours." if email_sent
+            else "Message saved, but email delivery failed. We'll follow up manually."
+        )
     except Exception as e:
-        logger.error(f"Error processing contact form: {str(e)}")
+        logger.error(f"Contact form error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
-# Include the router in the main app
-app.include_router(api_router)
+# Mount router
+app.include_router(api_router, prefix="")  # Add "/api" if you want to namespace routes
 
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=CORS_ORIGINS,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Shutdown hook
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client:
+        client.close()
