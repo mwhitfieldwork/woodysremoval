@@ -121,7 +121,7 @@ async def root():
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
-    if not db:
+    if db is None:
         raise HTTPException(status_code=500, detail="Database not initialized")
     status_obj = StatusCheck(**input.dict())
     await db.status_checks.insert_one(status_obj.dict())
@@ -129,14 +129,14 @@ async def create_status_check(input: StatusCheckCreate):
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    if not db:
+    if db is None:
         raise HTTPException(status_code=500, detail="Database not initialized")
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**sc) for sc in status_checks]
 
 @api_router.post("/contact", response_model=ContactFormResponse)
 async def submit_contact_form(contact_data: ContactFormCreate):
-    if not db:
+    if db is None:
         raise HTTPException(status_code=500, detail="Database not initialized")
     try:
         contact_obj = ContactForm(**contact_data.dict())
