@@ -28,21 +28,19 @@ logger = logging.getLogger(__name__)
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 logger.info(f"Mongo URL being used: {mongo_url}")
+
 try:
-    client = AsyncIOMotorClient(mongo_url)
+    client = AsyncIOMotorClient(
+        mongo_url,
+        tls=True,
+        tlsAllowInvalidCertificates=True
+    )
     db = client[os.environ['DB_NAME']]
     logger.info("MongoDB client initialized successfully")
 except Exception as e:
     logger.error(f"MongoDB connection failed: {str(e)}")
+    db = None  # Prevent downstream crashes
 
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
-
-# Create the main app without a prefix
-app = FastAPI()
-
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
 
 
 # Define Models
