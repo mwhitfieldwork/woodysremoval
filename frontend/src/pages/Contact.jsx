@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
 import { Label } from "../components/ui/label";
 import { toast } from "sonner";
 import { 
@@ -23,6 +23,10 @@ const Contact = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,22 +38,23 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
+    setLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+  
     try {
-      // Use environment variable for backend URL, with production fallback
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://ridofjunk.org';
-      const response = await fetch(`${backendUrl}/api/contact`, {
-        method: 'POST',
+      const response = await fetch("https://stunning-tranquility-production.up.railway.app/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
-
+  
+      const data = await response.json();
+  
       if (response.ok) {
-        const result = await response.json();
-        toast.success(result.message);
+        setSuccessMessage(data.message);
         setFormData({
           name: "",
           email: "",
@@ -58,13 +63,12 @@ const Contact = () => {
           message: ""
         });
       } else {
-        throw new Error('Failed to send message');
+        setErrorMessage(data.detail || "Something went wrong. Please try again.");
       }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast.error("Sorry, there was an error sending your message. Please try again or call us directly.");
+    } catch (err) {
+      setErrorMessage("Network error. Please try again.");
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -224,6 +228,10 @@ const Contact = () => {
                   </Button>
                 </form>
               </CardContent>
+              <CardFooter>
+              {successMessage && <p className="text-green-600">{successMessage}</p>}
+              {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+              </CardFooter>
             </Card>
           </div>
 
