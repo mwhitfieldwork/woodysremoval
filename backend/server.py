@@ -35,7 +35,7 @@ CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "*").split(",")
 try:
     if not MONGO_URL or not DB_NAME:
         raise ValueError("Missing MongoDB config")
-    client = AsyncIOMotorClient(MONGO_URL, tls=True)
+    client = AsyncIOMotorClient(MONGO_URL)
     db = client[DB_NAME]
     logger.info("MongoDB client initialized")
 except Exception as e:
