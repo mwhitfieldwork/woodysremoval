@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
+import woodyImg from '../images/woody-standing-shadow.png';
 import { Alert, AlertDescription } from "../components/ui/alert";
 import { 
   ExternalLink, 
@@ -217,6 +218,9 @@ const Order = () => {
                 </div>
               </CardContent>
             </Card>
+            <div>
+              <img src={woodyImg} alt="Wooden figure holding box" className="hidden md:block"/>
+            </div>
           </div>
         </div>
       </div>
