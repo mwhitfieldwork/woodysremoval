@@ -66,10 +66,6 @@ const Footer = () => {
                 <span className="text-gray-400">(844) 239-7711</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-emerald-400" />
-                <span className="text-gray-400">info@woodysremoval.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-emerald-400" />
                 <span className="text-gray-400">Serving Local & Nationwide</span>
               </div>

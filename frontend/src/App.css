@@ -279,6 +279,8 @@ a#emergent-badge {
 .woody-thumbs{
   width:50%;
   height:auto;
+  position:absolute;
+  top:-190px;
 }
 
 .emrald-header {

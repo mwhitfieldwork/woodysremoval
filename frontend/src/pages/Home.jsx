@@ -7,7 +7,6 @@ import junktruck from '../images/junkremovaltruck.jpg';
 import truckback from '../images/truckback.png';
 import tvRepair from '../images/tv_repair.jpg'
 import officeImg from '../images/office-junk.png'
-import applianceImg from '../images/removal_washer.png'
 import { Link } from "react-router-dom";
 import { 
   Truck, 
@@ -65,11 +64,6 @@ const Home_slider = () => {
       title: "Office Removal",
       description: "Clear out office clutter—fast, discreet, and hassle-free.",
       image: officeImg
-    },
-    {
-      title: "Appliance Removal",
-      description: "Old appliances gone in minutes: Safe, clean, reliable service.",
-      image: applianceImg
     }
   ];
 
@@ -274,7 +268,7 @@ const Home_slider = () => {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
+          {/* Navigation Buttons 
           <button
             onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
             disabled={currentIndex === 0}
@@ -298,7 +292,7 @@ const Home_slider = () => {
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </button>
+          </button>*/}
         </div>            
       </section>
 
