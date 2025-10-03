@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import thumbsImg from '../images/woodylarge_cropped.png';
 import junktruck from '../images/junkremovaltruck.jpg';
 import truckback from '../images/truckback.png';
+import tvRepair from '../images/tv_repair.jpg'
+import officeImg from '../images/office-junk.png'
+import applianceImg from '../images/removal_washer.png'
 import { Link } from "react-router-dom";
 import { 
   Truck, 
@@ -25,39 +28,50 @@ import {
 const Home_slider = () => {
   // Slider state
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerView = 3; // Show 3 items at once on desktop
+  const [itemsPerView, setItemsPerView] = useState(1);
+  
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      setItemsPerView(window.innerWidth >= 1024 ? 3 : 1);
+    };
+    
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
 
   const services_scroll = [
     {
       title: "Mattress Removal",
       description: "Professional mattress and box spring removal with eco-friendly disposal.",
-      /*icon: <HomeIcon className="h-8 w-8" />,*/
       image: "https://images.unsplash.com/photo-1647376036543-f9f543601a1d"
     },
     {
-      title: "Furniture Removal",
+      title: "Trash & Debris Removal",
       description: "Complete furniture haul away from any room in your home or office.",
-      /*icon: <Building className="h-8 w-8" />,*/
       image: junktruck
     },
     {
       title: "Junk Removal",
       description: "Full-service junk removal for residential and commercial properties.",
-      /*icon: <Truck className="h-8 w-8" />,*/
       image: truckback
+    },
+    {
+      title: "TV Removal",
+      description: "Quick TV haul-away: Friendly, fast, and worry-free service.",
+      image: tvRepair
+    },
+    {
+      title: "Office Removal",
+      description: "Clear out office clutter—fast, discreet, and hassle-free.",
+      image: officeImg
+    },
+    {
+      title: "Appliance Removal",
+      description: "Old appliances gone in minutes: Safe, clean, reliable service.",
+      image: applianceImg
     }
   ];
-
-  // Slider functions
-  const maxIndex = Math.max(0, services_scroll.length - itemsPerView);
-
-  const nextSlide = () => {
-    setCurrentIndex(prev => prev >= maxIndex ? 0 : prev + 1);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex(prev => prev <= 0 ? maxIndex : prev - 1);
-  };
 
   const services = [
     { category: 'Mattress & Bed', items: ['Mattress Removal', 'Box Spring Removal'] },
@@ -122,7 +136,7 @@ const Home_slider = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-emerald-50 to-blue-50 py-0 emrald-header">
+      <section className="relative bg-gradient-to-br from-emerald-50 to-blue-50 py-0 py-4 emrald-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -215,85 +229,77 @@ const Home_slider = () => {
               Professional removal services for homes and businesses across the nation.
             </p>
           </div> 
-
-          {/* Slider Container */}
-          <div className="relative">
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
-              disabled={services_scroll.length <= itemsPerView}
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-600" />
-            </button>
-
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
-              disabled={services_scroll.length <= itemsPerView}
-            >
-              <ChevronRight className="w-6 h-6 text-gray-600" />
-            </button>
-
-            {/* Slider Content */}
-            <div className="overflow-hidden mx-8"> {/* mx-8 to make room for arrows */}
-              <div 
-                className="flex transition-transform duration-300 ease-in-out"
-                style={{ 
-                  transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
-                  width: `${(services_scroll.length / itemsPerView) * 100}%`
-                }}
-              >
-                {services_scroll.map((service, index) => (
-                  <div 
-                    key={index}
-                    className="w-full px-4" // px-4 for spacing between items
-                    style={{ flex: `0 0 ${100 / itemsPerView}%` }}
-                  >
-                    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                      <div className="relative h-48">
-                        <img
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                          {/*<div className="bg-white text-emerald-600 rounded-full p-3">
-                            {service.icon}
-                          </div>*/}
-                        </div>
-                      </div>
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
-                        <p className="text-gray-600 mb-4">{service.description}</p>
-                        <Link to="/order">
-                          <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                            Book Now
-                          </Button>
-                        </Link>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Dots Indicator */}
-            {services_scroll.length > itemsPerView && (
-              <div className="flex justify-center mt-6 space-x-2">
-                {Array.from({ length: maxIndex + 1 }, (_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      currentIndex === index ? 'bg-emerald-600' : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
         </div>
+        {/* Slider Wrapper */}
+        <div className="relative mx-auto max-w-7xl">
+          {/* Slider Container with overflow hidden */}
+          <div className="overflow-hidden">
+            {/* Slider Track */}
+            <div
+              className="flex transition-transform duration-300 ease-in-out"
+              style={{
+                transform: `translateX(-${currentIndex * 100}%)`,
+              }}
+            >
+              {services_scroll.map((service, index) => (
+                <div
+                  key={index}
+                  className="w-full lg:w-1/3 flex-shrink-0 px-4"
+                >
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div className="relative h-48">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        {/* Optional icon layer */}
+                      </div>
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 mb-4">{service.description}</p>
+                      <Link to="/order">
+                        <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                          Book Now
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
+            disabled={currentIndex === 0}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed z-10 transition-all"
+            aria-label="Previous slide"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={() =>
+              setCurrentIndex((prev) =>
+                Math.min(prev + 1, services_scroll.length - itemsPerView)
+              )
+            }
+            disabled={currentIndex >= services_scroll.length - itemsPerView}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed z-10 transition-all"
+            aria-label="Next slide"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>            
       </section>
 
       {/* Full Services Section */}

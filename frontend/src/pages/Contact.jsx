@@ -3,6 +3,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
+import woodyPeer from '../images/woody-peering.png';
 import { Label } from "../components/ui/label";
 import { toast } from "sonner";
 import { 
@@ -38,7 +39,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
     setSuccessMessage("");
     setErrorMessage("");
   
@@ -68,7 +69,7 @@ const Contact = () => {
     } catch (err) {
       setErrorMessage("Network error. Please try again.");
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -236,7 +237,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-6">
+          <div className="space-y-6 side-col">
             {contactInfo.map((info, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow duration-200">
                 <CardContent className="p-6">
