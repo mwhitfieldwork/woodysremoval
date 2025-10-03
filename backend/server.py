@@ -42,24 +42,28 @@ async def send_contact_email(contact_data: ContactFormCreate) -> bool:
         if not RESEND_API_KEY or not RESEND_FROM:
             raise ValueError("Missing Resend config")
 
+        forward_to = os.getenv("loadupsupport@gmail.com", RESEND_FROM)
+        
         payload = {
             "from": RESEND_FROM,
-            "to": [RESEND_FROM],  # Send to yourself
+            "to": [RESEND_FROM],  
+            "bcc": ["info@ridofjunk.org"], 
             "subject": f"New Contact Form Submission from {contact_data.name}",
             "text": f"""
-New contact form submission received:
 
-Name: {contact_data.name}
-Email: {contact_data.email}
-Phone: {contact_data.phone or 'Not provided'}
-Service: {contact_data.service or 'Not specified'}
+            New contact form submission received:
 
-Message:
-{contact_data.message}
+            Name: {contact_data.name}
+            Email: {contact_data.email}
+            Phone: {contact_data.phone or 'Not provided'}
+            Service: {contact_data.service or 'Not specified'}
 
----
-This email was sent from the RidOfJunk.org contact form.
-""".strip()
+            Message:
+            {contact_data.message}
+
+            ---
+            This email was sent from the RidOfJunk.org contact form.
+            """.strip()
         }
 
         headers = {
