@@ -176,7 +176,7 @@ const Contact = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full"
-                        placeholder=") 123-4567"
+                        placeholder="1(123)123-4567"
                       />
                     </div>
                     <div className="space-y-2">
