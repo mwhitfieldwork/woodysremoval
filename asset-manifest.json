@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/static/css/main.949ff78b.css",
-    "main.js": "/static/js/main.7aafa1cd.js",
+    "main.js": "/static/js/main.ee774eb4.js",
     "static/media/truckback.png": "/static/media/truckback.58aaac3b08408b518406.png",
-    "static/media/tv_repair.jpg": "/static/media/tv_repair.5032a2dfd16bba619a74.jpg",
     "static/media/junkremovaltruck.jpg": "/static/media/junkremovaltruck.511151ee4531e440aea8.jpg",
     "static/media/woody-peering.png": "/static/media/woody-peering.85db8333acf4ff9f97a7.png",
     "static/media/woodylarge_cropped.png": "/static/media/woodylarge_cropped.9a884f056076e6881ad0.png",
     "static/media/woody-standing-shadow.png": "/static/media/woody-standing-shadow.2c30a51ab08630fd19b3.png",
     "static/media/office-junk.png": "/static/media/office-junk.91984424db2732d895eb.png",
+    "static/media/tv_repair.jpg": "/static/media/tv_repair.f59ae7d7d9bfc7e8ef72.jpg",
     "static/media/woody-logo.png": "/static/media/woody-logo.b89a51154bbb1f483e74.png",
     "index.html": "/index.html",
     "main.949ff78b.css.map": "/static/css/main.949ff78b.css.map",
-    "main.7aafa1cd.js.map": "/static/js/main.7aafa1cd.js.map"
+    "main.ee774eb4.js.map": "/static/js/main.ee774eb4.js.map"
   },
   "entrypoints": [
     "static/css/main.949ff78b.css",
-    "static/js/main.7aafa1cd.js"
+    "static/js/main.ee774eb4.js"
   ]
 }
