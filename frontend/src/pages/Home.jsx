@@ -3,10 +3,9 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import thumbsImg from '../images/woodylarge_cropped.png';
-import junktruck from '../images/junkremovaltruck.jpg';
-import truckback from '../images/truckback.png';
-import tvRepair from '../images/tv_repair.jpg'
-import officeImg from '../images/office-junk.png'
+import truckback from '../images/truck_back.png';
+import tvRepair from '../images/tv_repair.png'
+import mattressImg from '../images/mattress_1.png'
 import { Link } from "react-router-dom";
 import { 
   Truck, 
@@ -43,12 +42,7 @@ const Home_slider = () => {
     {
       title: "Mattress Removal",
       description: "Professional mattress and box spring removal with eco-friendly disposal.",
-      image: "https://images.unsplash.com/photo-1647376036543-f9f543601a1d"
-    },
-    {
-      title: "Trash & Debris Removal",
-      description: "Complete furniture haul away from any room in your home or office.",
-      image: junktruck
+      image: mattressImg
     },
     {
       title: "Junk Removal",
@@ -59,11 +53,6 @@ const Home_slider = () => {
       title: "TV Removal",
       description: "Quick TV haul-away: Friendly, fast, and worry-free service.",
       image: tvRepair
-    },
-    {
-      title: "Office Removal",
-      description: "Clear out office clutter—fast, discreet, and hassle-free.",
-      image: officeImg
     }
   ];
 
@@ -267,32 +256,6 @@ const Home_slider = () => {
               ))}
             </div>
           </div>
-
-          {/* Navigation Buttons 
-          <button
-            onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
-            disabled={currentIndex === 0}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed z-10 transition-all"
-            aria-label="Previous slide"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={() =>
-              setCurrentIndex((prev) =>
-                Math.min(prev + 1, services_scroll.length - itemsPerView)
-              )
-            }
-            disabled={currentIndex >= services_scroll.length - itemsPerView}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed z-10 transition-all"
-            aria-label="Next slide"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>*/}
         </div>            
       </section>
 
