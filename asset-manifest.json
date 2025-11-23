@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.339188cc.css",
-    "main.js": "/static/js/main.f2ef716b.js",
+    "main.css": "/static/css/main.f23653d0.css",
+    "main.js": "/static/js/main.85f2388c.js",
     "static/media/tv_repair.png": "/static/media/tv_repair.d6783d2ebd89f82feaee.png",
     "static/media/mattress_1.png": "/static/media/mattress_1.93de1e9a622803046367.png",
     "static/media/truck_back.png": "/static/media/truck_back.de9a12ccb74febbef23a.png",
@@ -9,11 +9,11 @@
     "static/media/woody-standing-shadow.png": "/static/media/woody-standing-shadow.2c30a51ab08630fd19b3.png",
     "static/media/woody-logo.png": "/static/media/woody-logo.b89a51154bbb1f483e74.png",
     "index.html": "/index.html",
-    "main.339188cc.css.map": "/static/css/main.339188cc.css.map",
-    "main.f2ef716b.js.map": "/static/js/main.f2ef716b.js.map"
+    "main.f23653d0.css.map": "/static/css/main.f23653d0.css.map",
+    "main.85f2388c.js.map": "/static/js/main.85f2388c.js.map"
   },
   "entrypoints": [
-    "static/css/main.339188cc.css",
-    "static/js/main.f2ef716b.js"
+    "static/css/main.f23653d0.css",
+    "static/js/main.85f2388c.js"
   ]
 }
