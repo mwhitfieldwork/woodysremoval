@@ -236,9 +236,6 @@ const Home_slider = () => {
                         alt={service.title}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                        {/* Optional icon layer */}
-                      </div>
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">
